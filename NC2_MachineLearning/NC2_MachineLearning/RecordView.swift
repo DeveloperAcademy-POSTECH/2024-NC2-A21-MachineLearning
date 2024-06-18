@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct recordView: View {
+struct RecordView: View {
     var body: some View {
         VStack {
             Spacer().frame(height: 80)
