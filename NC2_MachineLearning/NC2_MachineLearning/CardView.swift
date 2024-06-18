@@ -8,105 +8,143 @@
 import SwiftUI
 
 struct CardView: View {
+    
+    //원하는 구조체를 불러오기 위해 바인딩하기
     @Binding var voiceData: Voice
     
     var body: some View {
-        VStack{
-            
-            Text("목소리만 좋은 거렁뱅이")
-                .font(.Dnf32)
-                .foregroundStyle(Color(hexColor: "5B8CDC"))
-                .padding(.top, 50)
-            
-            ChipLayout(verticalSpacing: 12, horizontalSpacing: 12) {
+        ScrollView {
+            VStack{
+                Text("\(voiceData.name)")
+                    .font(.Dnf32)
+                    .foregroundStyle(Color(hexColor: "5B8CDC"))
+                
+                Spacer().frame(height: 10)
+                
                 HStack{
-                    Spacer()
                     ForEach(voiceData.features.indices, id: \.self) { index in
                         let model = voiceData.features[index]
-                        Text(model)
+                        Text("#\(model)")
+                            .font(.preMedium15)
                             .padding(.horizontal, 20)
-                            .padding(.vertical, 10)
+                            .padding(.vertical, 9)
+                            .foregroundStyle(.black
+                            )
                             .background(
-                                Capsule().foregroundStyle(Color(hexColor: "EFF1F5"))
+                                Rectangle()
+                                    .foregroundColor(Color(hexColor: "EFF1F5"))
+                                    .cornerRadius(20)
                             )
                     }
-                    Spacer()
                 }
                 
+                Spacer().frame(height: 18)
+                
+                Image(voiceData.imageName)
+                
+                //설명글
+                VStack(alignment: .leading){
+                    Text("\(voiceData.name)는...")
+                        .font(.preBold16)
+                        .foregroundStyle(Color(hexColor: "A3A7AE"))
+                    
+                    Spacer().frame(height: 10)
+                    
+                    Text(voiceData.description)
+                        .tracking(-0.2)
+                        .lineSpacing(3)
+                    
+                }
+                //.border(Color.black)
+                .padding(.horizontal, 32)
+                .padding(.vertical, 33)
+                .background(Color(hexColor: "EFF1F5"))
+                .clipShape(
+                    RoundedRectangle(
+                        cornerRadius: 15
+                    )
+                )
+                
+                Spacer()
+                
+                //보이스 궁합 결과
+                
+                HStack{
+                    VStack(alignment:.leading){
+                        Text("Best")
+                            .font(.preBold14)
+                            .foregroundStyle(Color(hexColor: "9CA8C0"))
+                        
+                        Text(voiceData.bestImageName)
+                            .font(.Dnf18)
+                            .foregroundStyle(Color(hexColor: "67738D"))
+                        
+                        Spacer().frame(height: 5)
+                        
+                        Image(voiceData.bestImageName)
+                            .padding(.leading,40)
+                    }
+                    .padding(.leading,21)
+                    .padding(.top,20)
+                    .background(Color(hexColor: "EFF1F5"))
+                    .clipShape(
+                        RoundedRectangle(
+                            cornerRadius: 15
+                        )
+                    )
+                    
+                    VStack(alignment:.leading){
+                        Text("Worst")
+                            .font(.preBold14)
+                            .foregroundStyle(Color(hexColor: "9CA8C0"))
+                        
+                        Text(voiceData.bestImageName)
+                            .font(.Dnf18)
+                            .foregroundStyle(Color(hexColor: "67738D"))
+                        
+                        Spacer().frame(height: 5)
+                        
+                        Image(voiceData.worstImageName)
+                            .padding(.leading,40)
+                    }
+                    .padding(.leading,21)
+                    .padding(.top,20)
+                    .background(Color(hexColor: "EFF1F5"))
+                    .clipShape(
+                        RoundedRectangle(
+                            cornerRadius: 15
+                        )
+                    )
+                }
+                
+                Spacer().frame(height: 30)
+                
+                Button(action: {
+                    
+                }, label: {
+                    VStack{
+                        Text("처음으로")
+                            .foregroundStyle(.white)
+                            .font(.Dnf25)
+                    }
+                    .padding(.horizontal, 134)
+                    .padding(.vertical, 14)
+                    //.frame(width: 362, height: 65)
+                    .background(Color(hexColor: "5B8CDC"))
+                    .clipShape(
+                        RoundedRectangle(
+                            cornerRadius: 15
+                        )
+                    )
+                })
+                .padding(.bottom,25)
             }
-            
-            Spacer()
-            
-        }//.border(.black)
-    }
-}
-
-//MARK: - ChipLayout
-
-struct ChipLayout: Layout {
-    var verticalSpacing: CGFloat = 0
-    var horizontalSpacing: CGFloat = 0
-    
-    // scrollView에서 height = nil
-    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout Cache) -> CGSize {
-        print("--sizeThatFits--", cache)
-        return CGSize(width: proposal.width ?? 0, height: cache.height)
-    }
-    
-    // proposal 제공 뷰크기
-    // bounds 위치
-    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout Cache) {
-        print("--placeSubviews--")
-        print("bound: ", bounds)
-        print("proposal: ", proposal)
-        
-        var sumX: CGFloat = bounds.minX
-        var sumY: CGFloat = bounds.minY
-        
-        for index in subviews.indices {
-            let view = subviews[index]
-            let viewSize = view.sizeThatFits(.unspecified)
-            guard let proposalWidth = proposal.width else { continue }
-            
-            // 가로 끝인경우 아래로 이동
-            if (sumX + viewSize.width > proposalWidth) {
-                sumX = bounds.minX
-                sumY += viewSize.height
-                sumY += verticalSpacing
-            }
-            
-            let point = CGPoint(x: sumX, y: sumY)
-            // anchor: point의 기준 적용지점
-            // proposal: unspecified, infinity -> 넘어감, zero -> 사라짐, size -> 제안한크기 만큼 지정됨
-            view.place(at: point, anchor: .topLeading, proposal: proposal)
-            sumX += viewSize.width
-            sumX += horizontalSpacing
-            
-            
         }
-        if let firstViewSize = subviews.first?.sizeThatFits(.unspecified) {
-            // sumY는 topLeading 기준의 좌표이므로 height를 구하려면
-            // chip뷰의 height를 더해야 전체 높이값이 나옵니다.
-            cache.height = sumY + firstViewSize.height
-        }
-    }
-    
-    struct Cache {
-        var height: CGFloat
-    }
-    
-    func makeCache(subviews: Subviews) -> Cache {
-        print("make cache")
-        return Cache(height: 0)
-    }
-    
-    func updateCache(_ cache: inout Cache, subviews: Subviews) {
-        print("update cache", cache)
     }
 }
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(voiceData: .constant(Voice(name: "나른한 힐링 마스터", features: ["저음의","부드러운","차분한"], description: "가오에 살고 가오에 죽는 타입이에요 목소리는 좋지만 사실 가진건 쥐뿔도없답니다", goodImageName: "", badImageName: "")))
+        CardView(voiceData: .constant(Voice(name: "나른한 힐링 마스터", imageName: "test", features: ["저음의","부드러운","차분한"], description: "가오에 살고 가오에 죽는 타입이에요 목소리는 좋지만 사실 가진건 쥐뿔도없답니다", bestImageName: "깨발랄 귀염둥이", worstImageName: "깨발랄 귀염둥이")))
     }
 }
