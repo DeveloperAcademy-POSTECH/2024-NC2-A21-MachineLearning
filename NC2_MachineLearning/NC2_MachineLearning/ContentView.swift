@@ -41,7 +41,7 @@ struct ContentView: View {
             }
             .padding()
             .navigationDestination(isPresented: $isButtonTapped) {
-                recordView()
+                RecordView()
             }
         }
     }
