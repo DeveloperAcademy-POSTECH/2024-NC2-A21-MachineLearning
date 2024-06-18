@@ -16,6 +16,10 @@
 		B3303C732C212914006E522A /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3303C722C212914006E522A /* Font.swift */; };
 		B3303C752C214A7B006E522A /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3303C742C214A7B006E522A /* RecordView.swift */; };
 		B3303C772C2153EC006E522A /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = B3303C762C2153EC006E522A /* Pretendard-Medium.otf */; };
+		B3303C7A2C216893006E522A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3303C792C216893006E522A /* CardView.swift */; };
+		B3303C7E2C2174E8006E522A /* VoiceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3303C7D2C2174E8006E522A /* VoiceData.swift */; };
+		B3303C842C21C10D006E522A /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B3303C832C21C10D006E522A /* Pretendard-Bold.otf */; };
+		B3303C862C21C7DE006E522A /* voiceClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B3303C852C21C7DE006E522A /* voiceClassifier.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +34,10 @@
 		B3303C722C212914006E522A /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		B3303C742C214A7B006E522A /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		B3303C762C2153EC006E522A /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		B3303C792C216893006E522A /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		B3303C7D2C2174E8006E522A /* VoiceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceData.swift; sourceTree = "<group>"; };
+		B3303C832C21C10D006E522A /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		B3303C852C21C7DE006E522A /* voiceClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = voiceClassifier.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,9 +71,12 @@
 			isa = PBXGroup;
 			children = (
 				B3303C712C2128C5006E522A /* NC2-MachineLearning-Info.plist */,
+				B3303C852C21C7DE006E522A /* voiceClassifier.mlmodel */,
 				B3303C5A2C2121F5006E522A /* NC2_MachineLearningApp.swift */,
 				B3303C5C2C2121F5006E522A /* ContentView.swift */,
+				B3303C7D2C2174E8006E522A /* VoiceData.swift */,
 				B3303C742C214A7B006E522A /* RecordView.swift */,
+				B3303C792C216893006E522A /* CardView.swift */,
 				B3303C6C2C2127D0006E522A /* Color+Extension.swift */,
 				B3303C5E2C2121F6006E522A /* Assets.xcassets */,
 				B3303C6E2C2128A4006E522A /* Font */,
@@ -86,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				B3303C722C212914006E522A /* Font.swift */,
+				B3303C832C21C10D006E522A /* Pretendard-Bold.otf */,
 				B3303C762C2153EC006E522A /* Pretendard-Medium.otf */,
 				B3303C6F2C2128B0006E522A /* DNFBitBitv2.otf */,
 			);
@@ -151,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3303C702C2128B0006E522A /* DNFBitBitv2.otf in Resources */,
+				B3303C842C21C10D006E522A /* Pretendard-Bold.otf in Resources */,
 				B3303C622C2121F6006E522A /* Preview Assets.xcassets in Resources */,
 				B3303C5F2C2121F6006E522A /* Assets.xcassets in Resources */,
 				B3303C772C2153EC006E522A /* Pretendard-Medium.otf in Resources */,
@@ -166,8 +179,11 @@
 			files = (
 				B3303C732C212914006E522A /* Font.swift in Sources */,
 				B3303C5D2C2121F5006E522A /* ContentView.swift in Sources */,
+				B3303C862C21C7DE006E522A /* voiceClassifier.mlmodel in Sources */,
 				B3303C5B2C2121F5006E522A /* NC2_MachineLearningApp.swift in Sources */,
+				B3303C7E2C2174E8006E522A /* VoiceData.swift in Sources */,
 				B3303C752C214A7B006E522A /* RecordView.swift in Sources */,
+				B3303C7A2C216893006E522A /* CardView.swift in Sources */,
 				B3303C6D2C2127D0006E522A /* Color+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
