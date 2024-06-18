@@ -11,5 +11,5 @@ import UIKit
 
 extension Font{
     // SemiBold
-    static let SemiBold32: Font = .custom("DNF32", size: 32)
+    static let Dnf32: Font = .custom("DNFBitBitv2", size: 32)
 }
