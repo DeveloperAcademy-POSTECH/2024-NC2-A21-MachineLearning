@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var isButtonTapped: Bool = false
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -19,7 +22,7 @@ struct ContentView: View {
                 Spacer().frame(height: 80)
                 
                 Button(action: {
-                    
+                    isButtonTapped = true
                 }, label: {
                     VStack{
                         Text("Start")
@@ -33,11 +36,13 @@ struct ContentView: View {
                             cornerRadius: 35
                         )
                     )
-                    //.border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
                 })
                 Spacer()
             }
             .padding()
+            .navigationDestination(isPresented: $isButtonTapped) {
+                recordView()
+            }
         }
     }
 }
