@@ -10,43 +10,52 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var isButtonTapped: Bool = false
+    //var isNext: Bool = false
+    //@State var observer : ResultsObserver
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                Spacer()
-                Image("logo")
-                    .resizable()
-                    .frame(width: 190, height: 290)
-                
-                Spacer().frame(height: 80)
-                
-                Button(action: {
-                    isButtonTapped = true
-                }, label: {
-                    VStack{
-                        Text("Start")
-                            .font(.Dnf32)
-                            .foregroundStyle(Color(.white))
+            NavigationStack {
+                ZStack {
+                    Color.white
+                        .ignoresSafeArea()
+                    VStack {
+                        Spacer()
+                        Image("logo")
+                            .resizable()
+                            .frame(width: 190, height: 290)
+                        
+                        Spacer().frame(height: 80)
+                        
+                        Button(action: {
+                            isButtonTapped = true
+                        }, label: {
+                            VStack{
+                                Text("Start")
+                                    .font(.Dnf32)
+                                    .foregroundStyle(Color(.white))
+                            }
+                            .frame(width: 190, height: 80)
+                            .background(Color(hexColor: "5B8CDC"))
+                            .clipShape(
+                                RoundedRectangle(
+                                    cornerRadius: 35
+                                )
+                            )
+                        })
+                        Spacer()
                     }
-                    .frame(width: 190, height: 80)
-                    .background(Color(hexColor: "5B8CDC"))
-                    .clipShape(
-                        RoundedRectangle(
-                            cornerRadius: 35
-                        )
-                    )
-                })
-                Spacer()
+                    .padding()
+                    .navigationDestination(isPresented: $isButtonTapped) {
+                        RecordView()
+                }
+                }
             }
-            .padding()
-            .navigationDestination(isPresented: $isButtonTapped) {
-                RecordView()
-            }
-        }
+        
     }
 }
 
 #Preview {
+    //@State var previewResult = "Sample Result"
     ContentView()
+    //ContentView(observer: ResultsObserver(result: " "))
 }
