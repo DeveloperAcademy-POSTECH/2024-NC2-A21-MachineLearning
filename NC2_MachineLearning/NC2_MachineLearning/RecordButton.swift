@@ -14,7 +14,6 @@ struct RecordButton: View {
     var voiceData: VoiceData
     
     var body: some View {
-        NavigationStack {
             HStack {
                 Button(
                     action: {
@@ -43,7 +42,6 @@ struct RecordButton: View {
                     }
                 
             }
-        }
     }
 }
 
