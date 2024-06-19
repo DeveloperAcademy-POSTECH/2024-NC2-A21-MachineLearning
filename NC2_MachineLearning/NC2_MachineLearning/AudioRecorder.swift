@@ -51,6 +51,7 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioPlayerDelegate {
         do {
             audioRecorder = try AVAudioRecorder(url: fileURL, settings: settings)
             audioRecorder?.record()
+        voiceSave
             isRecording = true
             isNext = false
             print("Recording started")
