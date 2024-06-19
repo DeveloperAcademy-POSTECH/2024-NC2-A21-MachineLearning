@@ -11,11 +11,7 @@ import SoundAnalysis
 struct RecordButton: View {
     
     @ObservedObject var audioRecorder: AudioRecorder
-    //var voiceData: VoiceData
-    //위의 audioRecorder는 아직 생성이 안되었는데, audioFileURL을 불러오려 하니 계속 에러가 떴던 것!
-    //    var audioFileURL: URL? {
-    //        audioRecorder.recordedFile
-    //    }
+    var voiceData: VoiceData
     
     var body: some View {
         NavigationStack {
@@ -43,7 +39,7 @@ struct RecordButton: View {
                         }
                     })
                 .navigationDestination(isPresented: $audioRecorder.isNext){
-                        //CardView(voiceData: voiceData.$voice1)
+                    CardView(voiceData: voiceData.$voice1)
                     }
                 
             }
@@ -51,6 +47,7 @@ struct RecordButton: View {
     }
 }
 
-#Preview {
-    RecordButton(audioRecorder: AudioRecorder())
-}
+//#Preview {
+//    //var voiceData: VoiceData
+//    RecordButton(audioRecorder: AudioRecorder(), voiceData: VoiceData, voiceData: )
+//}

@@ -25,6 +25,7 @@ struct RecordView: View {
                     .font(.Dnf20)
                     .padding(.bottom,20)
                     .padding(.top, 110)
+                
                 VStack(alignment: .leading){
                     Text("\" 잘못되고 있는 것에 집중하면 안 돼.\n항상 상황을 바꿀 방법이 있어. \"")
                         .foregroundStyle(Color.black)
@@ -56,7 +57,7 @@ struct RecordView: View {
                 )
                 Spacer()
                 
-                RecordButton(audioRecorder: AudioRecorder())
+                RecordButton(audioRecorder: AudioRecorder(), voiceData: VoiceData())
                 
                 Spacer()
                 
