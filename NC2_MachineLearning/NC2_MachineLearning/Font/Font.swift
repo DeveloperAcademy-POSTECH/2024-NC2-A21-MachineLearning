@@ -20,6 +20,9 @@ extension Font{
     static let preMedium20: Font = .custom("Pretendard-Medium", size: 20)
     static let preMedium15: Font = .custom("Pretendard-Medium", size: 15)
     
+    //semi
+    static let preSemiBold16: Font = .custom("Pretendard-SemiBold", size: 16)
+    
     //bold
     static let preBold16: Font = .custom("Pretendard-Bold", size: 16)
     static let preBold14: Font = .custom("Pretendard-Bold", size: 14)

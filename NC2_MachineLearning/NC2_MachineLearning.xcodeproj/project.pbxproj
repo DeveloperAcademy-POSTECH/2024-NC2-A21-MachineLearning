@@ -23,6 +23,7 @@
 		B3303C882C21FDFB006E522A /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3303C872C21FDFB006E522A /* AudioRecorder.swift */; };
 		B3303C8A2C2204B5006E522A /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3303C892C2204B4006E522A /* RecordButton.swift */; };
 		B3303C8C2C22141B006E522A /* ResultsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3303C8B2C22141B006E522A /* ResultsObserver.swift */; };
+		B3303C902C22A707006E522A /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B3303C8F2C22A707006E522A /* Pretendard-SemiBold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		B3303C872C21FDFB006E522A /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		B3303C892C2204B4006E522A /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButton.swift; sourceTree = "<group>"; };
 		B3303C8B2C22141B006E522A /* ResultsObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsObserver.swift; sourceTree = "<group>"; };
+		B3303C8F2C22A707006E522A /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 			children = (
 				B3303C722C212914006E522A /* Font.swift */,
 				B3303C832C21C10D006E522A /* Pretendard-Bold.otf */,
+				B3303C8F2C22A707006E522A /* Pretendard-SemiBold.otf */,
 				B3303C762C2153EC006E522A /* Pretendard-Medium.otf */,
 				B3303C6F2C2128B0006E522A /* DNFBitBitv2.otf */,
 			);
@@ -174,6 +177,7 @@
 				B3303C702C2128B0006E522A /* DNFBitBitv2.otf in Resources */,
 				B3303C842C21C10D006E522A /* Pretendard-Bold.otf in Resources */,
 				B3303C622C2121F6006E522A /* Preview Assets.xcassets in Resources */,
+				B3303C902C22A707006E522A /* Pretendard-SemiBold.otf in Resources */,
 				B3303C5F2C2121F6006E522A /* Assets.xcassets in Resources */,
 				B3303C772C2153EC006E522A /* Pretendard-Medium.otf in Resources */,
 			);
