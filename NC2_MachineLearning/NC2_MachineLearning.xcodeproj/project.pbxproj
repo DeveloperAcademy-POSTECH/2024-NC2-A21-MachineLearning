@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		111E7B622C22B77D00C4FAF8 /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111E7B612C22B77D00C4FAF8 /* WaveformView.swift */; };
+		117F0CD82C2344A700A03D86 /* Quotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117F0CD72C2344A700A03D86 /* Quotes.swift */; };
+		117F0CDA2C23460600A03D86 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117F0CD92C23460500A03D86 /* AppState.swift */; };
 		B3303C5B2C2121F5006E522A /* NC2_MachineLearningApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3303C5A2C2121F5006E522A /* NC2_MachineLearningApp.swift */; };
 		B3303C5D2C2121F5006E522A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3303C5C2C2121F5006E522A /* ContentView.swift */; };
 		B3303C5F2C2121F6006E522A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3303C5E2C2121F6006E522A /* Assets.xcassets */; };
@@ -29,6 +31,8 @@
 
 /* Begin PBXFileReference section */
 		111E7B612C22B77D00C4FAF8 /* WaveformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
+		117F0CD72C2344A700A03D86 /* Quotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quotes.swift; sourceTree = "<group>"; };
+		117F0CD92C23460500A03D86 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		B3303C572C2121F5006E522A /* NC2_MachineLearning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NC2_MachineLearning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3303C5A2C2121F5006E522A /* NC2_MachineLearningApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NC2_MachineLearningApp.swift; sourceTree = "<group>"; };
 		B3303C5C2C2121F5006E522A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -86,8 +90,10 @@
 				B3303C972C2321FC006E522A /* View */,
 				B3303C7D2C2174E8006E522A /* VoiceData.swift */,
 				B3303C8B2C22141B006E522A /* ResultsObserver.swift */,
+				117F0CD72C2344A700A03D86 /* Quotes.swift */,
 				B3303C932C22CB08006E522A /* BonoView.swift */,
 				B3303C872C21FDFB006E522A /* AudioRecorder.swift */,
+				117F0CD92C23460500A03D86 /* AppState.swift */,
 				B3303C6E2C2128A4006E522A /* Font */,
 				B3303C982C232218006E522A /* Manager */,
 				B3303C5E2C2121F6006E522A /* Assets.xcassets */,
@@ -214,9 +220,11 @@
 				B3303C942C22CB08006E522A /* BonoView.swift in Sources */,
 				B3303C5D2C2121F5006E522A /* ContentView.swift in Sources */,
 				B3303C862C21C7DE006E522A /* voiceClassifier.mlmodel in Sources */,
+				117F0CD82C2344A700A03D86 /* Quotes.swift in Sources */,
 				B3303C5B2C2121F5006E522A /* NC2_MachineLearningApp.swift in Sources */,
 				B3303C7E2C2174E8006E522A /* VoiceData.swift in Sources */,
 				B3303C752C214A7B006E522A /* RecordView.swift in Sources */,
+				117F0CDA2C23460600A03D86 /* AppState.swift in Sources */,
 				B3303C8C2C22141B006E522A /* ResultsObserver.swift in Sources */,
 				B3303C7A2C216893006E522A /* CardView.swift in Sources */,
 				B3303C6D2C2127D0006E522A /* Color+Extension.swift in Sources */,
