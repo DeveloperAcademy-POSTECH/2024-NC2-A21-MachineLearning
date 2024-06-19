@@ -44,7 +44,7 @@ struct ContentView: View {
                 }
                 .padding()
                 .navigationDestination(isPresented: $isButtonTapped) {
-                    RecordView()
+                    RecordView().ignoresSafeArea()
                 }
             }
         }
