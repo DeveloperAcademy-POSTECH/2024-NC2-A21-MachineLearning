@@ -23,7 +23,6 @@
 		B3303C882C21FDFB006E522A /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3303C872C21FDFB006E522A /* AudioRecorder.swift */; };
 		B3303C8A2C2204B5006E522A /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3303C892C2204B4006E522A /* RecordButton.swift */; };
 		B3303C8C2C22141B006E522A /* ResultsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3303C8B2C22141B006E522A /* ResultsObserver.swift */; };
-		B3303C8E2C226BC7006E522A /* RecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3303C8D2C226BC6006E522A /* RecordViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +44,6 @@
 		B3303C872C21FDFB006E522A /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		B3303C892C2204B4006E522A /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButton.swift; sourceTree = "<group>"; };
 		B3303C8B2C22141B006E522A /* ResultsObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsObserver.swift; sourceTree = "<group>"; };
-		B3303C8D2C226BC6006E522A /* RecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +82,6 @@
 				B3303C5C2C2121F5006E522A /* ContentView.swift */,
 				B3303C7D2C2174E8006E522A /* VoiceData.swift */,
 				B3303C742C214A7B006E522A /* RecordView.swift */,
-				B3303C8D2C226BC6006E522A /* RecordViewModel.swift */,
 				B3303C8B2C22141B006E522A /* ResultsObserver.swift */,
 				B3303C892C2204B4006E522A /* RecordButton.swift */,
 				B3303C792C216893006E522A /* CardView.swift */,
@@ -200,7 +197,6 @@
 				B3303C8C2C22141B006E522A /* ResultsObserver.swift in Sources */,
 				B3303C7A2C216893006E522A /* CardView.swift in Sources */,
 				B3303C6D2C2127D0006E522A /* Color+Extension.swift in Sources */,
-				B3303C8E2C226BC7006E522A /* RecordViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

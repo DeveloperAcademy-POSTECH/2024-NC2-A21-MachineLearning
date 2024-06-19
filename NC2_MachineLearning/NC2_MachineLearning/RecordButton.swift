@@ -11,13 +11,6 @@ import SoundAnalysis
 struct RecordButton: View {
     
     @ObservedObject var audioRecorder: AudioRecorder
-    //@State var isNext: Bool = false
-    
-    
-    //    init(audioRecorder: AudioRecorder) {
-    //        self.audioRecorder = audioRecorder
-    //    }
-    
     //위의 audioRecorder는 아직 생성이 안되었는데, audioFileURL을 불러오려 하니 계속 에러가 떴던 것!
 //    var audioFileURL: URL? {
 //        audioRecorder.recordedFile
