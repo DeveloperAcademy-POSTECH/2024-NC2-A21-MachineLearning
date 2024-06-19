@@ -83,18 +83,15 @@
 				B3303C712C2128C5006E522A /* NC2-MachineLearning-Info.plist */,
 				B3303C852C21C7DE006E522A /* voiceClassifier.mlmodel */,
 				B3303C5A2C2121F5006E522A /* NC2_MachineLearningApp.swift */,
-				B3303C5C2C2121F5006E522A /* ContentView.swift */,
+				B3303C972C2321FC006E522A /* View */,
 				B3303C7D2C2174E8006E522A /* VoiceData.swift */,
-				B3303C742C214A7B006E522A /* RecordView.swift */,
 				B3303C8B2C22141B006E522A /* ResultsObserver.swift */,
-				111E7B612C22B77D00C4FAF8 /* WaveformView.swift */,
-				B3303C792C216893006E522A /* CardView.swift */,
-				B3303C6C2C2127D0006E522A /* Color+Extension.swift */,
-				B3303C872C21FDFB006E522A /* AudioRecorder.swift */,
-				B3303C5E2C2121F6006E522A /* Assets.xcassets */,
-				B3303C6E2C2128A4006E522A /* Font */,
-				B3303C602C2121F6006E522A /* Preview Content */,
 				B3303C932C22CB08006E522A /* BonoView.swift */,
+				B3303C872C21FDFB006E522A /* AudioRecorder.swift */,
+				B3303C6E2C2128A4006E522A /* Font */,
+				B3303C982C232218006E522A /* Manager */,
+				B3303C5E2C2121F6006E522A /* Assets.xcassets */,
+				B3303C602C2121F6006E522A /* Preview Content */,
 			);
 			path = NC2_MachineLearning;
 			sourceTree = "<group>";
@@ -117,6 +114,25 @@
 				B3303C6F2C2128B0006E522A /* DNFBitBitv2.otf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		B3303C972C2321FC006E522A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B3303C792C216893006E522A /* CardView.swift */,
+				111E7B612C22B77D00C4FAF8 /* WaveformView.swift */,
+				B3303C5C2C2121F5006E522A /* ContentView.swift */,
+				B3303C742C214A7B006E522A /* RecordView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B3303C982C232218006E522A /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				B3303C6C2C2127D0006E522A /* Color+Extension.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -150,6 +150,16 @@ class RecordManager {
         audioRecorder.stopRecording()
         print("finishRecord")
     }
+    
+//    func classifySound(){
+//        let audioFileAnalyzer = try! SNAudioFileAnalyzer(url: audioFileURL)
+//        
+//        let request = try! SNClassifySoundRequest(mlModel: voiceClassifier().model)
+//        do{
+//            try? audioFileAnalyzer.add(request, withObserver: observer)
+//            try audioFileAnalyzer.analyze()
+//        }
+//    }
 }
 
 #Preview {
