@@ -9,9 +9,9 @@ import SwiftUI
 import SoundAnalysis
 
 struct RecordView: View {
-    
-    //var observer : ResultsObserver
-    //@State var observer : ResultsObserver
+    //@State private var result: String = ""
+    var userType: VoiceUserType = VoiceUserType()
+    @State var recordManager: RecordManager = .init(audioRecorder: AudioRecorder(), tappedRecordButton: false, tappedFinishRecordButton: false)
     
     var body: some View {
         NavigationStack {
@@ -55,14 +55,91 @@ struct RecordView: View {
                         )
                     )
                     Spacer()
-                    
-                    RecordButton(audioRecorder: AudioRecorder(), voiceData: VoiceData())
+                    VStack{
+                        if !recordManager.tappedRecordButton {
+                            Button(
+                                action: {
+                                    print("hello")
+                                    recordManager.startRecord()
+                                    
+                                },
+                                label: {
+                                    ZStack {
+                                        Circle()
+                                            .foregroundColor(Color(red: 0.36, green: 0.55, blue: 0.86))
+                                            .frame(width: 111, height: 111)
+                                        Circle()
+                                            .foregroundColor(Color(red: 0.59, green: 0.8, blue: 0.98))
+                                            .frame(width: 81.57682, height: 81.57682)
+                                        Circle()
+                                            .foregroundColor(Color(red: 0.83, green: 0.96, blue: 1))
+                                            .frame(width: 66.71552, height: 66.71551)
+                                        Image("mike")
+                                    }
+                                })
+                        } else {
+                            Button(
+                                action: {
+                                    recordManager.finishRecord()
+                                },
+                                label: {
+                                    ZStack {
+                                        Circle()
+                                            .foregroundColor(Color(red: 0.36, green: 0.55, blue: 0.86))
+                                            .frame(width: 111, height: 111)
+                                        Circle()
+                                            .foregroundColor(Color(red: 0.59, green: 0.8, blue: 0.98))
+                                            .frame(width: 81.57682, height: 81.57682)
+                                        Circle()
+                                            .foregroundColor(Color(red: 0.83, green: 0.96, blue: 1))
+                                            .frame(width: 66.71552, height: 66.71551)
+                                        Image("stop")
+                                    }
+                                })
+                        }
+                    }
+                    .navigationDestination(isPresented:  $recordManager.tappedFinishRecordButton){
+                        CardView(voiceData: userType.voice1)
+                    }
+                    //RecordButton(audioRecorder: AudioRecorder(), voiceData: VoiceData())
                     
                     Spacer()
                     
                 }
             }
         }
+    }
+}
+
+@Observable
+class RecordManager {
+    var audioRecorder: AudioRecorder
+    var tappedRecordButton: Bool = false
+    var tappedFinishRecordButton: Bool = false
+    //var resultType: UserRecordResultType = .bono
+    
+    init(audioRecorder: AudioRecorder, tappedRecordButton: Bool, tappedFinishRecordButton: Bool) {
+        self.audioRecorder = audioRecorder
+        self.tappedRecordButton = tappedRecordButton
+        self.tappedFinishRecordButton = tappedFinishRecordButton
+        //self.resultType = resultType
+    }
+    
+    func startRecord() {
+        // 어쩌구 시작
+        print("startRecord")
+        tappedRecordButton = true
+        audioRecorder.startRecording()
+        print("hi")
+        
+    }
+    
+    func finishRecord() {
+        // 뭔진 모르는데 일단 분석중 굳 !~
+        //resultType = .kuro // 결과 반영
+        tappedFinishRecordButton = true // 화면 이동
+        audioRecorder.stopRecording()
+        print("finishRecord")
     }
 }
 

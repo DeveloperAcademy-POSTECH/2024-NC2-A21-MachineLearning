@@ -10,7 +10,7 @@ import SwiftUI
 struct CardView: View {
     
     //원하는 구조체를 불러오기 위해 바인딩하기
-    @Binding var voiceData: Voice
+    var voiceData: VoiceData
     
     var body: some View {
         ZStack {
@@ -153,6 +153,6 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(voiceData: .constant(Voice(name: "나른한 힐링 마스터", imageName: "test", features: ["저음의","부드러운","차분한"], description: "가오에 살고 가오에 죽는 타입이에요 목소리는 좋지만 사실 가진건 쥐뿔도없답니다", bestImageName: "깨발랄 귀염둥이", worstImageName: "깨발랄 귀염둥이")))
+        CardView(voiceData: VoiceData(name: "나른한 힐링 마스터", imageName: "test", features: ["저음의","부드러운","차분한"], description: "가오에 살고 가오에 죽는 타입이에요 목소리는 좋지만 사실 가진건 쥐뿔도없답니다", bestImageName: "깨발랄 귀염둥이", worstImageName: "깨발랄 귀염둥이"))
     }
 }

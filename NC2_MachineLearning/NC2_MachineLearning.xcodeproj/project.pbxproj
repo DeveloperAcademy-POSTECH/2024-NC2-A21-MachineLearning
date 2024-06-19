@@ -24,6 +24,7 @@
 		B3303C8A2C2204B5006E522A /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3303C892C2204B4006E522A /* RecordButton.swift */; };
 		B3303C8C2C22141B006E522A /* ResultsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3303C8B2C22141B006E522A /* ResultsObserver.swift */; };
 		B3303C902C22A707006E522A /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B3303C8F2C22A707006E522A /* Pretendard-SemiBold.otf */; };
+		B3303C942C22CB08006E522A /* BonoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3303C932C22CB08006E522A /* BonoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		B3303C892C2204B4006E522A /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButton.swift; sourceTree = "<group>"; };
 		B3303C8B2C22141B006E522A /* ResultsObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsObserver.swift; sourceTree = "<group>"; };
 		B3303C8F2C22A707006E522A /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		B3303C932C22CB08006E522A /* BonoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				B3303C5E2C2121F6006E522A /* Assets.xcassets */,
 				B3303C6E2C2128A4006E522A /* Font */,
 				B3303C602C2121F6006E522A /* Preview Content */,
+				B3303C932C22CB08006E522A /* BonoView.swift */,
 			);
 			path = NC2_MachineLearning;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 			files = (
 				B3303C882C21FDFB006E522A /* AudioRecorder.swift in Sources */,
 				B3303C732C212914006E522A /* Font.swift in Sources */,
+				B3303C942C22CB08006E522A /* BonoView.swift in Sources */,
 				B3303C5D2C2121F5006E522A /* ContentView.swift in Sources */,
 				B3303C862C21C7DE006E522A /* voiceClassifier.mlmodel in Sources */,
 				B3303C8A2C2204B5006E522A /* RecordButton.swift in Sources */,
