@@ -13,7 +13,7 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioPlayerDelegate {
     @Published var isPaused = false
     
     // 음성 메모된 데이터
-    var recordedFile: URL?
+    var recordedFile: URL? = URL(string: "")
     
     // Singleton instance
     static let shared = AudioRecorder()
