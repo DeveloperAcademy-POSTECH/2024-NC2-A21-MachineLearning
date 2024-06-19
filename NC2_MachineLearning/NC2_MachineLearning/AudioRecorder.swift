@@ -1,112 +1,156 @@
-//
-//  AudioRecorder.swift
-//  NC2_MachineLearning
-//
-//  Created by 김예림 on 6/19/24.
-//
-
 import Foundation
 import AVFoundation
 
-class AudioRecorder: NSObject, ObservableObject, AVAudioPlayerDelegate{
-    //녹음
+class AudioRecorder: NSObject, ObservableObject, AVAudioPlayerDelegate {
+    // 녹음
     var audioRecorder: AVAudioRecorder?
     @Published var isRecording = false
-    //다음 화면 전환
     @Published var isNext = false
     
-    //재생
+    // 재생
     var audioPlayer: AVAudioPlayer?
     @Published var isPlaying = false
     @Published var isPaused = false
     
-    // 음성메모된 데이터
+    // 음성 메모된 데이터
     var recordedFile: URL?
-}
-
-// MARK: - 음성메모 녹음 관련 메서드
-extension AudioRecorder {
-    func startRecording() {
-        
-        //저장될 URL과 setting 파라미터를 두어 인스턴스 생성
-        
-        let fileURL = getDocumentsDirectory().appendingPathComponent("recording-\(Date().timeIntervalSince1970).m4a")
-        let settings = [
-            //오디오 녹음 파일 포맷
-            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-            // 오디오 샘플링 비율 설정
-            AVSampleRateKey: 12000,
-            // 오디오 녹음 파일의 채널 수 지정
-            AVNumberOfChannelsKey: 1, //mono
-            // 오디오 인코더 품질
-            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
-        ]
-        
+    
+    // Singleton instance
+    static let shared = AudioRecorder()
+    
+    override init() {
+        super.init()
+        configureAudioSession()
+        checkAudioRecordingPermission()
+    }
+    
+    func configureAudioSession() {
+        let audioSession = AVAudioSession.sharedInstance()
         do {
-            //녹음 시작
-            audioRecorder = try AVAudioRecorder(url: fileURL, settings: settings)
-            audioRecorder?.record()
-            self.isRecording = true
-
-            //self.isRecording = true
-            self.isNext = false
-            print("notNext")
+            try audioSession.setCategory(.playAndRecord, mode: .default)
+            try audioSession.setActive(true)
         } catch {
-            print("녹음 중 오류 발생: \(error.localizedDescription)")
+            print("Failed to configure audio session: \(error.localizedDescription)")
         }
     }
     
-    //녹음 중지
-    func stopRecording() {
-        audioRecorder?.stop()
-        //recordedFile에 녹음한 음성 저장
-        self.recordedFile = self.audioRecorder!.url
-        self.isRecording = false
-        self.isNext = true
-        print("gotNext")
+    // 음성 메모 녹음 관련 메서드
+    // 받아올 때 형식과 확장자를 
+    func startRecording() {
+        let fileURL = getDocumentsDirectory().appendingPathComponent("recording-\(Date().timeIntervalSince1970).wav")
+        let settings: [String: Any] = [
+            AVFormatIDKey: Int(kAudioFormatLinearPCM),
+            AVSampleRateKey: 16000.0,
+            AVNumberOfChannelsKey: 1, // mono
+            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue,
+            AVLinearPCMBitDepthKey: 16,
+            AVLinearPCMIsBigEndianKey: false,
+            AVLinearPCMIsFloatKey: false
+        ]
+        
+        do {
+            audioRecorder = try AVAudioRecorder(url: fileURL, settings: settings)
+            audioRecorder?.record()
+        voiceSave
+            isRecording = true
+            isNext = false
+            print("Recording started")
+        } catch {
+            print("Failed to start recording: \(error.localizedDescription)")
+        }
     }
     
-    //음성이 저장된 경로를 추적하여 URL을 받아옴
-    private func getDocumentsDirectory() -> URL {
+    func stopRecording() {
+        guard let recorder = audioRecorder else {
+            print("Audio recorder is not initialized.")
+            return
+        }
+        recorder.stop()
+        recordedFile = recorder.url
+        isRecording = false
+        isNext = true
+        print("Recording stopped: \(String(describing: recordedFile))")
+    }
+    
+    func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
     }
-}
-
-// MARK: - 음성메모 재생 관련 메서드
-extension AudioRecorder {
     
-    //저장한 오디오 URL을 받아와서 재생
+    // 음성 메모 재생 관련 메서드
     func startPlaying(recordingURL: URL) {
         do {
-            //재생해~
             audioPlayer = try AVAudioPlayer(contentsOf: recordingURL)
             audioPlayer?.delegate = self
             audioPlayer?.play()
-            self.isPlaying = true
-            self.isPaused = false
+            isPlaying = true
+            isPaused = false
+            print("Playback started")
         } catch {
-            print("재생 중 오류 발생: \(error.localizedDescription)")
+            print("Failed to start playback: \(error.localizedDescription)")
         }
     }
     
     func stopPlaying() {
         audioPlayer?.stop()
-        self.isPlaying = false
+        isPlaying = false
+        isPaused = false
+        print("Playback stopped")
     }
     
     func pausePlaying() {
         audioPlayer?.pause()
-        self.isPaused = true
+        isPaused = true
+        print("Playback paused")
     }
     
     func resumePlaying() {
         audioPlayer?.play()
-        self.isPaused = false
+        isPaused = false
+        print("Playback resumed")
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        self.isPlaying = false
-        self.isPaused = false
+        isPlaying = false
+        isPaused = false
+        print("Playback finished")
+    }
+    
+    // 녹음 파일 목록 출력
+    func listRecordings() {
+        let documentsDirectory = getDocumentsDirectory()
+        do {
+            let files = try FileManager.default.contentsOfDirectory(at: documentsDirectory, includingPropertiesForKeys: nil)
+            let recordings = files.filter { $0.pathExtension == "wav" }
+            if recordings.isEmpty {
+                print("No recordings found.")
+            } else {
+                print("Recordings:")
+                for recording in recordings {
+                    print(recording.lastPathComponent)
+                }
+            }
+        } catch {
+            print("Failed to list recordings: \(error.localizedDescription)")
+        }
+    }
+    
+    func checkAudioRecordingPermission() {
+        switch AVAudioSession.sharedInstance().recordPermission {
+        case .granted:
+            print("Permission granted")
+        case .denied:
+            print("Permission denied")
+        case .undetermined:
+            AVAudioSession.sharedInstance().requestRecordPermission { granted in
+                if granted {
+                    print("Permission granted")
+                } else {
+                    print("Permission denied")
+                }
+            }
+        @unknown default:
+            fatalError("Unknown AVAudioSession record permission status")
+        }
     }
 }

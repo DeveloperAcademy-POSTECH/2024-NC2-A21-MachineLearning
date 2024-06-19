@@ -47,15 +47,10 @@ class ResultsObserver: NSObject, SNResultsObserving {
         print("\(classification.identifier): \(percentString) confidence.\n")
         classificationResult = classificationResult + "Analysis result for audio at time: \(formattedTime) \(classification.identifier): \(percentString) confidence \n"
     }
-    
-    
-    
-    
     /// Notifies the observer when a request generates an error.
     func request(_ request: SNRequest, didFailWithError error: Error) {
         print("The analysis failed: \(error.localizedDescription)")
     }
-    
     
     /// Notifies the observer when a request is complete.
     func requestDidComplete(_ request: SNRequest) {
