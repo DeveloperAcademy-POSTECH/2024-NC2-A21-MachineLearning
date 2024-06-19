@@ -9,6 +9,6 @@ import Foundation
 import SwiftUI
 
 class MainViewModel: ObservableObject {
-    @Published var observer : ResultsObserver = .request(ResultsObserver())
+    //@Published var observer : ResultsObserver = .request(ResultsObserver())
 }
 

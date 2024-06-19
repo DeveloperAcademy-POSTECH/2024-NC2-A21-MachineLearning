@@ -11,9 +11,9 @@ import SoundAnalysis
 struct RecordView: View {
     
     //@StateObject var audioRecorder: AudioRecorder
-    var observer : ResultsObserver
+    //var observer : ResultsObserver
     
-    
+    //@Binding var isNext: Bool
     //@State var observer : ResultsObserver
     
     var body: some View {
@@ -42,7 +42,7 @@ struct RecordView: View {
                 )
                 Spacer()
                 
-                RecordButton(audioRecorder: AudioRecorder(), observer: observer)
+                RecordButton(audioRecorder: AudioRecorder())
                 
             }
         }

@@ -10,7 +10,8 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var isButtonTapped: Bool = false
-    @State var observer : ResultsObserver
+    //var isNext: Bool = false
+    //@State var observer : ResultsObserver
     
     var body: some View {
             NavigationStack {
@@ -45,7 +46,7 @@ struct ContentView: View {
                     }
                     .padding()
                     .navigationDestination(isPresented: $isButtonTapped) {
-                        RecordView(observer: observer)
+                        RecordView()
                 }
                 }
             }
@@ -54,5 +55,7 @@ struct ContentView: View {
 }
 
 #Preview {
+    //@State var previewResult = "Sample Result"
     ContentView()
+    //ContentView(observer: ResultsObserver(result: " "))
 }
