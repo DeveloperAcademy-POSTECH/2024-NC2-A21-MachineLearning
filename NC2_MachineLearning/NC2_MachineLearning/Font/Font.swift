@@ -17,7 +17,7 @@ extension Font{
     static let Dnf18: Font = .custom("DNFBitBitv2", size: 18)
     
     //medium
-    static let preMedium22: Font = .custom("Pretendard-Medium", size: 22)
+    static let preMedium20: Font = .custom("Pretendard-Medium", size: 20)
     static let preMedium15: Font = .custom("Pretendard-Medium", size: 15)
     
     //bold
