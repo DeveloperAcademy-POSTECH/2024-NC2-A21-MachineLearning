@@ -47,6 +47,8 @@ extension AudioRecorder {
             audioRecorder = try AVAudioRecorder(url: fileURL, settings: settings)
             audioRecorder?.record()
             self.isRecording = true
+
+            //self.isRecording = true
             self.isNext = false
             print("notNext")
         } catch {
