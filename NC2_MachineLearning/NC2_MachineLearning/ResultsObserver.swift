@@ -78,6 +78,7 @@ class ResultsObserver: NSObject, SNResultsObserving {
         // 가장 많이 도출된 identifier의 퍼센트
         var totalConfidence = mostFrequentClassification!.value * 100.0
         var percentString = String(format: "%.2f%%", totalConfidence)
+        print("Most Frequnet identifier is \(identifier) : \(percentString)")
         
     }
 }

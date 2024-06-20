@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SoundAnalysis
+import AVFoundation
 
 struct RecordView: View {
     @State var result: String = ""
@@ -99,6 +100,8 @@ struct RecordView: View {
                             Button(
                                 action: {
                                     recordManager.finishRecord()
+                                    print("finish")
+                                    recordManager.classifySound()
                                 },
                                 label: {
                                     ZStack {
@@ -127,7 +130,7 @@ struct RecordView: View {
 class RecordManager: ObservableObject {
     var observer: ResultsObserver
     var audioRecorder: AudioRecorder
-    //var audioFileURL = audioRecorder.recordedFile
+    //var audioFileURL:URL = audioRecorder.recordedFile
     @Published var tappedRecordButton: Bool = false
     @Published var tappedFinishRecordButton: Bool = false
     @Published var showWaveform = false
