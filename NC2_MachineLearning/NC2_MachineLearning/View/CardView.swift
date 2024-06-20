@@ -85,6 +85,7 @@ struct CardView: View {
                             Text(voiceData.bestImageName)
                                 .font(.Dnf18)
                                 .foregroundStyle(Color(hexColor: "67738D"))
+                                .padding(.trailing,20)
                             
                             Spacer().frame(height: 5)
                             
@@ -105,9 +106,10 @@ struct CardView: View {
                                 .font(.preBold14)
                                 .foregroundStyle(Color(hexColor: "9CA8C0"))
                             
-                            Text(voiceData.bestImageName)
-                                .font(.Dnf18)
+                            Text(voiceData.worstImageName)
+                                .font(.Dnf20)
                                 .foregroundStyle(Color(hexColor: "67738D"))
+                                .padding(.trailing,5)
                             
                             Spacer().frame(height: 5)
                             
@@ -153,6 +155,6 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(voiceData: VoiceData(name: "나른한 힐링 마스터", imageName: "test", features: ["저음의","부드러운","차분한"], description: "가오에 살고 가오에 죽는 타입이에요 목소리는 좋지만 사실 가진건 쥐뿔도없답니다", bestImageName: "깨발랄 귀염둥이", worstImageName: "깨발랄 귀염둥이"))
+        CardView(voiceData: VoiceData(name: "나른한 힐링 마스터", imageName: "test", features: ["저음의","부드러운","차분한"], description: "가오에 살고 가오에 죽는 타입이에요 목소리는 좋지만 사실 가진건 쥐뿔도없답니다", bestImageName: "깨발랄 귀염둥이", worstImageName: "전교1등"))
     }
 }
