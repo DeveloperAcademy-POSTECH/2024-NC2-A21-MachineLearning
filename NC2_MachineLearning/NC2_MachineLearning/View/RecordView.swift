@@ -7,12 +7,20 @@
 
 import SwiftUI
 import SoundAnalysis
+import AVFoundation
 
 struct RecordView: View {
-    
+    @State var result: String = ""
     var userType: VoiceUserType = VoiceUserType()
-    @State var recordManager: RecordManager = .init(audioRecorder: AudioRecorder(), tappedRecordButton: false, tappedFinishRecordButton: false, showWaveform: false)
+
     @State private var selectedQuoteIndex = Int.random(in: 0..<QuoteManager.quotes.count)
+    @StateObject var recordManager: RecordManager
+    
+    init() {
+        let observer = ResultsObserver(result: .constant(""))
+        let audioRecorder = AudioRecorder()
+        _recordManager = StateObject(wrappedValue: RecordManager(observer: observer, audioRecorder: audioRecorder))
+    }
     
     var body: some View {
         NavigationStack {
@@ -93,6 +101,8 @@ struct RecordView: View {
                             Button(
                                 action: {
                                     recordManager.finishRecord()
+                                    print("finish")
+                                    recordManager.classifySound()
                                 },
                                 label: {
                                     ZStack {
@@ -118,18 +128,17 @@ struct RecordView: View {
     }
 }
 
-@Observable
-class RecordManager {
+class RecordManager: ObservableObject {
+    var observer: ResultsObserver
     var audioRecorder: AudioRecorder
-    var tappedRecordButton: Bool = false
-    var tappedFinishRecordButton: Bool = false
-    var showWaveform = false
+    //var audioFileURL:URL = audioRecorder.recordedFile
+    @Published var tappedRecordButton: Bool = false
+    @Published var tappedFinishRecordButton: Bool = false
+    @Published var showWaveform = false
     
-    init(audioRecorder: AudioRecorder, tappedRecordButton: Bool, tappedFinishRecordButton: Bool, showWaveform: Bool) {
+    init(observer: ResultsObserver, audioRecorder: AudioRecorder) {
+        self.observer = observer
         self.audioRecorder = audioRecorder
-        self.tappedRecordButton = tappedRecordButton
-        self.tappedFinishRecordButton = tappedFinishRecordButton
-        self.showWaveform = showWaveform
     }
     
     func startRecord() {
@@ -152,15 +161,15 @@ class RecordManager {
         print("finishRecord")
     }
     
-//    func classifySound(){
-//        let audioFileAnalyzer = try! SNAudioFileAnalyzer(url: audioFileURL)
-//        
-//        let request = try! SNClassifySoundRequest(mlModel: voiceClassifier().model)
-//        do{
-//            try? audioFileAnalyzer.add(request, withObserver: observer)
-//            try audioFileAnalyzer.analyze()
-//        }
-//    }
+    func classifySound(){
+        let audioFileAnalyzer = try! SNAudioFileAnalyzer(url: audioRecorder.recordedFile!)
+        
+        let request = try! SNClassifySoundRequest(mlModel: voiceClassifier().model)
+        do{
+            try? audioFileAnalyzer.add(request, withObserver: observer)
+            try audioFileAnalyzer.analyze()
+        }
+    }
 }
 
 #Preview {
