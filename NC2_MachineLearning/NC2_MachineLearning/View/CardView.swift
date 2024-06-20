@@ -51,19 +51,22 @@ struct CardView: View {
                     //설명글
                     VStack(alignment: .leading){
                         Text("\(voiceData.name)는...")
+                            .padding(.horizontal, 32)
                             .font(.preBold16)
                             .foregroundStyle(Color(hexColor: "9CA8C0"))
                         
                         Spacer().frame(height: 10)
                         
                         Text(voiceData.description)
+                            .padding(.leading, 32)
                             .foregroundStyle(.black)
                             .tracking(-0.2)
                             .lineSpacing(3)
                         
                     }
+                    .frame(width: 363)
                     //.border(Color.black)
-                    .padding(.horizontal, 32)
+                    //
                     .padding(.vertical, 33)
                     .background(Color(hexColor: "EFF1F5"))
                     .clipShape(
@@ -82,8 +85,8 @@ struct CardView: View {
                                 .font(.preBold14)
                                 .foregroundStyle(Color(hexColor: "9CA8C0"))
                             
-                            Text(voiceData.bestImageName)
-                                .font(.Dnf18)
+                            Text(voiceData.bestMatch)
+                                .font(.Dnf20)
                                 .foregroundStyle(Color(hexColor: "67738D"))
                                 .padding(.trailing,20)
                             
@@ -106,7 +109,7 @@ struct CardView: View {
                                 .font(.preBold14)
                                 .foregroundStyle(Color(hexColor: "9CA8C0"))
                             
-                            Text(voiceData.worstImageName)
+                            Text(voiceData.worstMatch)
                                 .font(.Dnf20)
                                 .foregroundStyle(Color(hexColor: "67738D"))
                                 .padding(.trailing,5)
@@ -153,8 +156,8 @@ struct CardView: View {
     }
 }
 
-struct CardView_Previews: PreviewProvider {
-    static var previews: some View {
-        CardView(voiceData: VoiceData(name: "나른한 힐링 마스터", imageName: "test", features: ["저음의","부드러운","차분한"], description: "가오에 살고 가오에 죽는 타입이에요 목소리는 좋지만 사실 가진건 쥐뿔도없답니다", bestImageName: "사랑스런치와와", worstImageName: "고뇌의전교1등"))
-    }
-}
+//struct CardView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CardView(voiceData: VoiceData(name: "나른한 힐링 마스터", imageName: "test", features: ["저음의","부드러운","차분한"], description: "가오에 살고 가오에 죽는 타입이에요 목소리는 좋지만 사실 가진건 쥐뿔도없답니다", bestImageName: "사랑스런치와와", worstImageName: "고뇌의전교1등"))
+//    }
+//}

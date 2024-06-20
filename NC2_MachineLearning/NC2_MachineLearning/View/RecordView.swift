@@ -11,14 +11,16 @@ import AVFoundation
 
 struct RecordView: View {
     @State var result: String = ""
-
+    
     @State private var selectedQuoteIndex = Int.random(in: 0..<QuoteManager.quotes.count)
     @StateObject var recordManager: RecordManager
     
     init() {
-        let observer = ResultsObserver(result: .constant(""))
+        let result = ""
+        let genderObserver = ResultsObserver(result: .constant(""))
+        let userTypeObserver = ResultsObserver(result: .constant(""))
         let audioRecorder = AudioRecorder()
-        _recordManager = StateObject(wrappedValue: RecordManager(observer: observer, audioRecorder: audioRecorder, voiceUserType: VoiceUserType(), voiceData: VoiceData(name: "", imageName: "", features: ["","",""], description: "", bestImageName: "", worstImageName: ""), userType: ""))
+        _recordManager = StateObject(wrappedValue: RecordManager(genderObserver: genderObserver, userTypeObserver: userTypeObserver, audioRecorder: audioRecorder, voiceUserType: VoiceUserType(), voiceData: VoiceData(name: "", imageName: "", features: ["","",""], description: "", bestMatch: "", worstMatch: "", bestImageName: "", worstImageName: ""), userType: "", gender: ""))
     }
     
     var body: some View {
@@ -80,7 +82,6 @@ struct RecordView: View {
                                 action: {
                                     print("hello")
                                     recordManager.startRecord()
-                                    
                                 },
                                 label: {
                                     ZStack {
@@ -101,7 +102,7 @@ struct RecordView: View {
                                 action: {
                                     recordManager.finishRecord()
                                     print("finish")
-                                    recordManager.classifySound()
+                                    recordManager.classifyAudio()
                                 },
                                 label: {
                                     ZStack {
@@ -126,29 +127,33 @@ struct RecordView: View {
             }
         }
         .onAppear {
-            result = ""
-            selectedQuoteIndex = 0
+            result = " "
         }
     }
 }
 
 class RecordManager: ObservableObject {
-    var observer: ResultsObserver
+    var genderObserver: ResultsObserver
+    var userTypeObserver: ResultsObserver
     var audioRecorder: AudioRecorder
     var voiceUserType: VoiceUserType
     var voiceData: VoiceData
     var userType: String
+    var gender: String
     //var audioFileURL:URL = audioRecorder.recordedFile
     @Published var tappedRecordButton: Bool = false
     @Published var tappedFinishRecordButton: Bool = false
     @Published var showWaveform = false
     
-    init(observer: ResultsObserver, audioRecorder: AudioRecorder, voiceUserType: VoiceUserType, voiceData: VoiceData, userType: String) {
-        self.observer = observer
+    init(genderObserver: ResultsObserver, userTypeObserver: ResultsObserver, audioRecorder: AudioRecorder, voiceUserType: VoiceUserType, voiceData: VoiceData, userType: String, gender: String) {
+        
+        self.genderObserver = genderObserver
+        self.userTypeObserver = userTypeObserver
         self.audioRecorder = audioRecorder
         self.voiceUserType = voiceUserType
         self.voiceData = voiceData
         self.userType = userType
+        self.gender = gender
     }
     
     func startRecord() {
@@ -171,15 +176,37 @@ class RecordManager: ObservableObject {
         print("finishRecord")
     }
     
-    func classifySound(){
-        let audioFileAnalyzer = try! SNAudioFileAnalyzer(url: audioRecorder.recordedFile!)
+    func classifyAudio(){
         
-        let request = try! SNClassifySoundRequest(mlModel: voiceClassifier().model)
+        let genderAnalyzer = try! SNAudioFileAnalyzer(url: audioRecorder.recordedFile!)
+        
+        let userTypeAnalyzer = try! SNAudioFileAnalyzer(url: audioRecorder.recordedFile!)
+        
+        let request = try! SNClassifySoundRequest(mlModel: genderClassifier().model)
         do{
-            try? audioFileAnalyzer.add(request, withObserver: observer)
-            try audioFileAnalyzer.analyze()
+            try? genderAnalyzer.add(request, withObserver: genderObserver)
+            try genderAnalyzer.analyze()
         }
-        userType = observer.mostClassificationIdentifier
+        
+        gender = genderObserver.mostClassificationIdentifier
+        print(gender)
+        
+        if gender == "male" {
+            let request = try! SNClassifySoundRequest(mlModel: maleVoiceClassifier().model)
+            do{
+                try? userTypeAnalyzer.add(request, withObserver: userTypeObserver)
+                try userTypeAnalyzer.analyze()
+            }
+        }
+        else if gender == "female" {
+            let request = try! SNClassifySoundRequest(mlModel: femaleVoiceClassifier().model)
+            do{
+                try? userTypeAnalyzer.add(request, withObserver: userTypeObserver)
+                try userTypeAnalyzer.analyze()
+            }
+        }
+        
+        userType = userTypeObserver.mostClassificationIdentifier
         print(userType)
         
         if userType == "01_male"{

@@ -27,6 +27,9 @@
 		B3303C8C2C22141B006E522A /* ResultsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3303C8B2C22141B006E522A /* ResultsObserver.swift */; };
 		B3303C902C22A707006E522A /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B3303C8F2C22A707006E522A /* Pretendard-SemiBold.otf */; };
 		B3303C942C22CB08006E522A /* BonoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3303C932C22CB08006E522A /* BonoView.swift */; };
+		B3303C9A2C243E7C006E522A /* genderClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B3303C992C243E7C006E522A /* genderClassifier.mlmodel */; };
+		B3303C9D2C2440EA006E522A /* maleVoiceClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B3303C9B2C2440EA006E522A /* maleVoiceClassifier.mlmodel */; };
+		B3303C9E2C2440EA006E522A /* femaleVoiceClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B3303C9C2C2440EA006E522A /* femaleVoiceClassifier.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,9 @@
 		B3303C8B2C22141B006E522A /* ResultsObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsObserver.swift; sourceTree = "<group>"; };
 		B3303C8F2C22A707006E522A /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		B3303C932C22CB08006E522A /* BonoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonoView.swift; sourceTree = "<group>"; };
+		B3303C992C243E7C006E522A /* genderClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = genderClassifier.mlmodel; sourceTree = "<group>"; };
+		B3303C9B2C2440EA006E522A /* maleVoiceClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = maleVoiceClassifier.mlmodel; sourceTree = "<group>"; };
+		B3303C9C2C2440EA006E522A /* femaleVoiceClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = femaleVoiceClassifier.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +91,10 @@
 			isa = PBXGroup;
 			children = (
 				B3303C712C2128C5006E522A /* NC2-MachineLearning-Info.plist */,
+				B3303C9C2C2440EA006E522A /* femaleVoiceClassifier.mlmodel */,
+				B3303C9B2C2440EA006E522A /* maleVoiceClassifier.mlmodel */,
 				B3303C852C21C7DE006E522A /* voiceClassifier.mlmodel */,
+				B3303C992C243E7C006E522A /* genderClassifier.mlmodel */,
 				B3303C5A2C2121F5006E522A /* NC2_MachineLearningApp.swift */,
 				B3303C972C2321FC006E522A /* View */,
 				B3303C7D2C2174E8006E522A /* VoiceData.swift */,
@@ -218,6 +227,7 @@
 				B3303C882C21FDFB006E522A /* AudioRecorder.swift in Sources */,
 				B3303C732C212914006E522A /* Font.swift in Sources */,
 				B3303C942C22CB08006E522A /* BonoView.swift in Sources */,
+				B3303C9E2C2440EA006E522A /* femaleVoiceClassifier.mlmodel in Sources */,
 				B3303C5D2C2121F5006E522A /* ContentView.swift in Sources */,
 				B3303C862C21C7DE006E522A /* voiceClassifier.mlmodel in Sources */,
 				117F0CD82C2344A700A03D86 /* Quotes.swift in Sources */,
@@ -227,6 +237,8 @@
 				117F0CDA2C23460600A03D86 /* AppState.swift in Sources */,
 				B3303C8C2C22141B006E522A /* ResultsObserver.swift in Sources */,
 				B3303C7A2C216893006E522A /* CardView.swift in Sources */,
+				B3303C9A2C243E7C006E522A /* genderClassifier.mlmodel in Sources */,
+				B3303C9D2C2440EA006E522A /* maleVoiceClassifier.mlmodel in Sources */,
 				B3303C6D2C2127D0006E522A /* Color+Extension.swift in Sources */,
 				111E7B622C22B77D00C4FAF8 /* WaveformView.swift in Sources */,
 			);
