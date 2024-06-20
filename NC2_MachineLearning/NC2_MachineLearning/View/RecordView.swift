@@ -11,7 +11,6 @@ import AVFoundation
 
 struct RecordView: View {
     @State var result: String = ""
-    var userType: VoiceUserType = VoiceUserType()
 
     @State private var selectedQuoteIndex = Int.random(in: 0..<QuoteManager.quotes.count)
     @StateObject var recordManager: RecordManager
@@ -19,7 +18,7 @@ struct RecordView: View {
     init() {
         let observer = ResultsObserver(result: .constant(""))
         let audioRecorder = AudioRecorder()
-        _recordManager = StateObject(wrappedValue: RecordManager(observer: observer, audioRecorder: audioRecorder))
+        _recordManager = StateObject(wrappedValue: RecordManager(observer: observer, audioRecorder: audioRecorder, voiceUserType: VoiceUserType(), voiceData: VoiceData(name: "", imageName: "", features: ["","",""], description: "", bestImageName: "", worstImageName: ""), userType: ""))
     }
     
     var body: some View {
@@ -122,8 +121,13 @@ struct RecordView: View {
                     }
                 }
             }.navigationDestination(isPresented:  $recordManager.tappedFinishRecordButton){
-                CardView(voiceData: userType.voice1)
+                
+                CardView(voiceData: recordManager.voiceData)
             }
+        }
+        .onAppear {
+            result = ""
+            selectedQuoteIndex = 0
         }
     }
 }
@@ -131,14 +135,20 @@ struct RecordView: View {
 class RecordManager: ObservableObject {
     var observer: ResultsObserver
     var audioRecorder: AudioRecorder
+    var voiceUserType: VoiceUserType
+    var voiceData: VoiceData
+    var userType: String
     //var audioFileURL:URL = audioRecorder.recordedFile
     @Published var tappedRecordButton: Bool = false
     @Published var tappedFinishRecordButton: Bool = false
     @Published var showWaveform = false
     
-    init(observer: ResultsObserver, audioRecorder: AudioRecorder) {
+    init(observer: ResultsObserver, audioRecorder: AudioRecorder, voiceUserType: VoiceUserType, voiceData: VoiceData, userType: String) {
         self.observer = observer
         self.audioRecorder = audioRecorder
+        self.voiceUserType = voiceUserType
+        self.voiceData = voiceData
+        self.userType = userType
     }
     
     func startRecord() {
@@ -169,7 +179,35 @@ class RecordManager: ObservableObject {
             try? audioFileAnalyzer.add(request, withObserver: observer)
             try audioFileAnalyzer.analyze()
         }
+        userType = observer.mostClassificationIdentifier
+        print(userType)
+        
+        if userType == "01_male"{
+            voiceData = voiceUserType.voice1
+        }
+        else if userType == "02_male" {
+            voiceData = voiceUserType.voice2
+        }
+        else if userType == "03_male" {
+            voiceData = voiceUserType.voice3
+        }
+        else if userType == "04_male" {
+            voiceData = voiceUserType.voice4
+        }
+        else if userType == "05_female" {
+            voiceData = voiceUserType.voice5
+        }
+        else if userType == "06_female" {
+            voiceData = voiceUserType.voice6
+        }
+        else if userType == "07_female" {
+            voiceData = voiceUserType.voice7
+        }
+        else if userType == "08_female" {
+            voiceData = voiceUserType.voice8
+        }
     }
+    
 }
 
 #Preview {

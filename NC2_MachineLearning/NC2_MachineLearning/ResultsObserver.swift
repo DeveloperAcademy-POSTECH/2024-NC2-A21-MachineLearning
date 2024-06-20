@@ -19,9 +19,13 @@ class ResultsObserver: NSObject, SNResultsObserving {
     //각 시간 범위의 classification 결과를 저장할 딕셔너리
     private var classifications: [String: Double] = [:]
     
+    var mostClassificationIdentifier: String
+    
     init(result: Binding<String>){
-        _classificationResult = result
-    }
+           _classificationResult = result
+           mostClassificationIdentifier = "" // Provide an initial value
+           super.init() // Call super.init() after initializing all properties
+       }
     
     /// Notifies the observer when a request generates a prediction.
     func request(_ request: SNRequest, didProduce result: SNResult) {
@@ -35,6 +39,7 @@ class ResultsObserver: NSObject, SNResultsObserving {
         //이는 상위 분류 후보를 나열한 배열을 나타냄
         //classification.first니까 젤 높은 순위의 후보를 데려옴
         guard let classification = result.classifications.first else { return }
+        //print(result.classifications)
         
         
         // Get the starting time.
@@ -58,9 +63,26 @@ class ResultsObserver: NSObject, SNResultsObserving {
         // Print the classification's name (label) with its confidence.
         // classification.identifier는 정의된 모델 클래스
         print("\(classification.identifier): \(percentString) confidence.\n")
+        
         classificationResult = classificationResult + "Analysis result for audio at time: \(formattedTime) \(classification.identifier): \(percentString) confidence \n"
         
         classifications[classification.identifier, default: 0.0] += classification.confidence
+        
+        //가장 많이 도출된 classification 결과값을 구하는 로직
+        //BG는 딕셔너리에서 삭제
+        classifications["BG"] = nil
+        //딕셔너리 안에서 가장 많이 나온 값 구하기
+        let mostFrequentClassification = classifications.max(by: { $0.value < $1.value })
+        
+        // 가장 많이 도출된 identifier
+        mostClassificationIdentifier = mostFrequentClassification!.key
+        let identifierValue = mostFrequentClassification?.value
+
+        // 가장 많이 도출된 identifier의 퍼센트
+        var totalConfidence = mostFrequentClassification!.value * 100.0
+        var percentString2 = String(format: "%.2f%%", totalConfidence)
+        //print("Most Frequnet identifier is \(identifier) : \(identifierValue)")
+        
     }
     /// Notifies the observer when a request generates an error.
     func request(_ request: SNRequest, didFailWithError error: Error) {
@@ -69,16 +91,8 @@ class ResultsObserver: NSObject, SNResultsObserving {
     
     /// Notifies the observer when a request is complete.
     func requestDidComplete(_ request: SNRequest) {
+
         print("The request completed successfully!")
-        
-        //가장 많이 도출된 classification 결과값을 구하는 로직
-        var mostFrequentClassification = classifications.max(by: { $0.value < $1.value })
-        // 가장 많이 도출된 identifier
-        var identifier = mostFrequentClassification?.key
-        // 가장 많이 도출된 identifier의 퍼센트
-        var totalConfidence = mostFrequentClassification!.value * 100.0
-        var percentString = String(format: "%.2f%%", totalConfidence)
-        print("Most Frequnet identifier is \(identifier) : \(percentString)")
         
     }
 }
