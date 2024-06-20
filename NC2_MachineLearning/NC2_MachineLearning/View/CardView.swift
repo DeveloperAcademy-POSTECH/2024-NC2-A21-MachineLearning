@@ -78,7 +78,7 @@ struct CardView: View {
                     
                     HStack{
                         VStack(alignment:.leading){
-                            Text("Best")
+                            Text("Best Match")
                                 .font(.preBold14)
                                 .foregroundStyle(Color(hexColor: "9CA8C0"))
                             
@@ -102,7 +102,7 @@ struct CardView: View {
                         )
                         
                         VStack(alignment:.leading){
-                            Text("Worst")
+                            Text("Worst Match")
                                 .font(.preBold14)
                                 .foregroundStyle(Color(hexColor: "9CA8C0"))
                             
