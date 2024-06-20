@@ -12,7 +12,8 @@ import AVFoundation
 struct RecordView: View {
     @State var result: String = ""
     var userType: VoiceUserType = VoiceUserType()
-    
+
+    @State private var selectedQuoteIndex = Int.random(in: 0..<QuoteManager.quotes.count)
     @StateObject var recordManager: RecordManager
     
     init() {
@@ -34,7 +35,7 @@ struct RecordView: View {
                         .padding(.bottom,20)
                     
                     VStack(alignment: .leading){
-                        Text("\" 잘못되고 있는 것에 집중하면 안 돼.\n항상 상황을 바꿀 방법이 있어. \"")
+                        Text(QuoteManager.quotes[selectedQuoteIndex].quote)
                             .foregroundStyle(Color.black)
                             .font(.preMedium20)
                             .lineSpacing(6)
@@ -49,7 +50,7 @@ struct RecordView: View {
                                 .frame(width: 1,height: 12)
                                 .background(Color(hexColor: "B9C1D2"))
                             
-                            Text("InsideOut, Joy")
+                            Text(QuoteManager.quotes[selectedQuoteIndex].movieTitle)
                                 .font(.preSemiBold16)
                                 .foregroundStyle(Color(hexColor: "B9C1D2"))
                         }.padding(.top,3)
