@@ -125,6 +125,10 @@ struct RecordView: View {
                 CardView(voiceData: recordManager.voiceData)
             }
         }
+        .onAppear {
+            result = ""
+            selectedQuoteIndex = 0
+        }
     }
 }
 
